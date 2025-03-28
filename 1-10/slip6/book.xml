@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<book isbn="978-3-16-148410-0" publisher="ExamplePublisher">
+    <title>Example Book</title>
+    <author>Vishvas Patil</author>
+    <description>This is an example book.</description>
+</book>

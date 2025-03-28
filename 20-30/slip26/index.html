@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h1>Employee Details</h1>
+
+    <select id="employee-list">
+        <option value="">Select an Employee</option>
+        <!-- Populated dynamically by PHP -->
+        <?php
+        // Database connection to fetch employee names
+        $conn = pg_connect("host=localhost dbname=your_database_name user=your_username password=your_password");
+        if (!$conn) {
+            die('Connection failed: ' . pg_last_error());
+        }
+
+        // Fetch employee names from the EMP table
+        $result = pg_query($conn, "SELECT ename FROM EMP");
+        while ($row = pg_fetch_assoc($result)) {
+            echo '<option value="' . $row['ename'] . '">' . $row['ename'] . '</option>';
+        }
+        pg_close($conn);
+        ?>
+    </select>
+
+    <div id="employee-details">
+        <!-- Employee details will be displayed here -->
+    </div>
+
+    <script src="ajax.js"></script>
+
+</body>
+</html>

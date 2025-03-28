@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#login-form").submit(function(event){
+                event.preventDefault();
+                var username = $("#username").val();
+                var password = $("#password").val();
+
+                $.ajax({
+                    url: "login.php",
+                    type: "POST",
+                    data: { username: username, password: password },
+                    success: function(response) {
+                        if(response.trim() == "valid") {
+                            window.location.href = "dashboard.php"; // Redirect to dashboard
+                        } else {
+                            alert("Invalid username or password");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="login-form" method="post">
+        <label>Username:</label>
+        <input type="text" name="username" id="username" required><br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" id="password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Check</title>
+    <!-- Load the JavaScript file dynamically using base_url() -->
+    <script src="<?php echo base_url('public/js/number.js'); ?>"></script>
+</head>
+<body>
+    <h1>Number Check</h1>
+    <p>Enter a number to check:</p>
+    <input type="number" id="num" />
+    <button onclick="checkNumber(document.getElementById('num').value)">Check</button>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Details</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Teacher Details</h1>
+    <select id="teacher-list">
+        <option value="">--Select Teacher--</option>
+        <option value="1">John Doe</option>
+        <option value="2">Jane Smith</option>
+        <option value="3">Bob Johnson</option>
+    </select>
+    <button id="submit-btn">Get Details</button>
+    <div id="details"></div>
+
+    <script>
+        $(document).ready(function(){
+            $('#submit-btn').click(function(){
+                var tno = $('#teacher-list').val();
+                if(tno == ''){
+                    alert('Please select a teacher.');
+                    return;
+                }
+
+                $.ajax({
+                    url: 'teacher.php',
+                    method: 'POST',
+                    data: {tno: tno},
+                    success: function(response) {
+                        $('#details').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

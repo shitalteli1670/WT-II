@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // When the user selects a book from the dropdown
+            $("select").change(function(){
+                var book = $(this).val();  // Get the selected book title
+                $.ajax({
+                    url: "book.xml",  // The XML file containing the book details
+                    dataType: "xml",          // Data type is XML
+                    success: function(xml) {
+                        // Iterate through the XML and find the matching book by title
+                        $(xml).find('book').each(function(){
+                            var title = $(this).find('title').text();
+                            if (title == book) {
+                                var author = $(this).find('author').text();
+                                var year = $(this).find('year').text();
+                                var price = $(this).find('price').text();
+                                // Display the book details
+                                $("#details").html("Author: " + author + "<br>Year: " + year + "<br>Price: " + price);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Dropdown to select a book -->
+    <select>
+        <option>Select a book</option>
+        <option>The Great Gatsby</option>
+        <option>To Kill a Mockingbird</option>
+        <option>1984</option>
+        <option>Pride and Prejudice</option>
+    </select>
+
+    <!-- Container to display the book details -->
+    <div id="details"></div>
+</body>
+</html>

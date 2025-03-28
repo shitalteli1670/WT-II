@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Example</title>
+    <style>
+        #name {
+            font-size: 14px;
+            color: black;
+        }
+        #img {
+            display: none; /* Initially hide the image */
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="name" onblur="changeStyle()" onmouseover="changeSize()" onmouseout="resetSize()" onmousedown="changeColor()" onmouseup="resetColor()">
+    <img id="img" src="https://via.placeholder.com/150" onload="changeImageSize()">
+
+    <script>
+        // Function to change font style when name is entered
+        function changeStyle() {
+            let name = document.getElementById("name").value;
+            if (name) {
+                document.getElementById("name").style.fontSize = "18px";
+                document.getElementById("name").style.color = "red";
+            } else {
+                document.getElementById("img").style.display = "block"; // Show image when input is empty
+            }
+        }
+
+        // Function to change font size when mouse hovers over the text box
+        function changeSize() {
+            document.getElementById("name").style.fontSize = "16px";
+        }
+
+        // Function to reset font size when mouse leaves the text box
+        function resetSize() {
+            document.getElementById("name").style.fontSize = "14px";
+        }
+
+        // Function to change text color when mouse is pressed
+        function changeColor() {
+            document.getElementById("name").style.color = "blue";
+        }
+
+        // Function to reset text color when mouse is released
+        function resetColor() {
+            document.getElementById("name").style.color = "red";
+        }
+
+        // Function to change image size when the image is loaded
+        function changeImageSize() {
+            document.getElementById("img").style.width = "200px";
+            document.getElementById("img").style.height = "200px";
+        }
+    </script>
+</body>
+</html>
